@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "_LoginLayout";
+}
+@model User
+
+<div class="container p-4 d-flex justify-content-center flex-column align-items-center w-100">
+    @if (TempData["success"] != null)
+    {
+        <div style="width:30%; font-size:large; height:45px; text-align:center; border-radius:2mm; position:relative; top:30px; right:30px;" class="bg-success p-2 text-light" id="temp">
+            @TempData["success"]
+        </div>
+    }
+    <div style="" class="mb-5 text-center">
+        <h4 class="text-light">
+            Welcome Back ,
+            Please Login to access for Your Tasks
+        </h4>
+        <span class="text-warning">TakeCare Your info store in coockies only one day </span>
+    </div>
+    <h1 class="text-light">Login</h1>
+
+    <form asp-action="Login" method="post" class="m-2 p-4 box-shadow " style="border-radius:2mm; border:1px solid yellow; width: 30%;">
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label text-white">Your Name</label>
+            <input class="form-control bg-dark text-white" asp-for="Name" placeholder="Your Name..." />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Phone" class="form-label text-white">Your Phone</label>
+            <input class="form-control bg-dark text-white" asp-for="Phone" placeholder="Your Phone..." />
+            <span asp-validation-for="Phone" class="text-danger"></span>
+        </div>
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3">
+        </div>
+        <div class="d-flex justify-content-center gap-2">
+            <button type="submit" class="btn btn-outline-light">Login</button>
+            <a asp-action="Register" class="btn btn-outline-warning">Register</a>
+        </div>
+    </form>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            setTimeout(function () {
+                $("#temp").fadeOut("slow");
+            }, 6000);
+        });
+
+    </script>
+}

@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ToDoTask</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ToDoTask.styles.css" asp-append-version="true" />
+
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="text-capitalize text-light">Tasks</h1>
+        </div>
+        <div class="container mb-2">
+            <a href="#" style="color:#6c757d;" class="pe-4 ps-4 btn btn-outline-light">New</a>
+        </div>
+        <div class="sidenav">
+            <ul class="sidenav-menu">
+                @if (Context.Request.Cookies.Keys.Contains("Name"))
+                {
+                    <li class="sidenav-item active">
+                        <a class="sidenav-link " href="/Task/Index">
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="sidenav-item">
+                        <a class="sidenav-link " href="/Task/filterDate/@DateTime.Today.ToString("yyyy-MM-dd")">
+                            <span>ToDay</span>
+                        </a>
+                    </li>
+                    <li class="sidenav-item">
+                        <a class="sidenav-link" href="/Task/filterDate/@DateTime.Today.AddDays(1).ToString("yyyy-MM-dd")">
+                            <span>Tomowrow</span>
+                        </a>
+                    </li>
+                    <li class="sidenav-item">
+                        <a class="sidenav-link" href="/Task/filterDate/@DateTime.Today.AddDays(7).ToString("yyyy-MM-dd")">
+                            <span>ThisWeak</span>
+                        </a>
+                    </li>
+                    <li class="sidenav-item">
+                        <a class="sidenav-link" href="/Account/Logout">
+                            <span>LogOut</span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+
+
+
+    <div style="height:90vh; overflow:auto; border-radius:2mm; background-color:#1c1c1c;" class="container  m-4">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

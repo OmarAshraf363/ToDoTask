@@ -1,0 +1,68 @@
+﻿@model List<ToDoTask.Models.Task>
+@{
+    var msg = @TempData["success"];
+}
+<div style="color:#ccc;" class="d-flex m-4 gap-5 align-items-center">
+    <div>
+    <h2 >Welcome @ViewBag.name</h2>
+    <h3>This is your <span class="text-warning">Tasks</span></h3>
+    </div>
+    @if (msg != null)
+    {
+        <div style="width:30%; font-size:large; height:45px; text-align:center; border-radius:2mm;" class="bg-success p-2 text-light" id="temp">
+            @TempData["success"]</div>
+    }
+
+
+</div>
+<a href="/Task/Create" class="me-4 ms-4 btn btn-outline-secondary"> New</a>
+
+<div class="container d-flex flex-wrap m-2 gap-2">
+    @foreach (var item in Model)
+    {
+        <div class="card " style="background-color:#161616; width: 17.4rem; height:max-content; text-align:center; color:#ccc;">
+            <div class="card-body">
+                <h5 class="card-title">@item.Title</h5>
+                <h6 class="card-subtitle">@item.Deadline</h6>
+                <p class="card-text">@item.Description</p>
+                <a href="/Task/Edit/@item.Id" class="card-link btn btn-outline-warning">Edit</a>
+                <a onclick="del(@item.Id)" class="card-link btn btn-outline-danger">Delete</a>
+            </div>
+        </div>
+    }
+
+</div>
+<script>
+    function del(id) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                }).then(() => {
+                    window.location.href = `/task/Delete/${id}`
+                });
+            }
+        });
+    }
+</script>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            setTimeout(function () {
+                $("#temp").fadeOut("slow");
+            }, 6000);
+        });
+
+    </script>
+}

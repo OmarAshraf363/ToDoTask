@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "_LoginLayout";
+}
+@model User
+
+<div class="container p-4 d-flex justify-content-center flex-column align-items-center w-100">
+    <div style="" class="mb-5 text-center">
+        <h4 class="text-light">
+            Hello ,
+            Please Put Your Info In Form
+        </h4>
+        <span class="text-warning">To Start Organize Task To Achive Your Goals</span>
+    </div>
+    <h1 class="text-light">Register</h1>
+
+    <form action="/Account/Register" method="post" class="m-2 p-4 box-shadow " style="border-radius:2mm; border:1px solid yellow; width: 30%;">
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label text-white">Your Name</label>
+            <input class="form-control bg-dark text-white" asp-for="Name" placeholder="Your Name..." />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Phone" class="form-label text-white">Your Phone</label>
+            <input class="form-control bg-dark text-white" asp-for="Phone" placeholder="Your Phone..." />
+            <span asp-validation-for="Phone" class="text-danger"></span>
+        </div>
+        <div  asp-validation-summary="ModelOnly"  class="text-danger mb-3">
+
+        </div>
+        <div class="d-flex justify-content-center align-items-center gap-2">
+            <button type="submit" class="btn btn-outline-light">Save</button>
+            <a href="/Account/Login">I have account...</a>
+            
+        </div>
+    </form>
+</div>

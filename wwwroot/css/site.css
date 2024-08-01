@@ -1,0 +1,83 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    display:flex;
+   gap:30px;
+    align-items:baseline;
+    background-color:#303030;
+    
+}
+
+
+.sidebar {
+    width: 20%;
+    height: 94vh;
+    border-radius: 2mm;
+    padding: 10px;
+   
+}
+
+.sidebar-header,
+.sidenav {
+    background-color: #303030;
+    border-radius: 2mm;
+    padding: 5px;
+    margin-bottom:0.5rem;
+}
+
+.sidebar-header {
+   
+    padding: 3px;
+}
+
+.sidenav-menu {
+    list-style: none;
+    padding: 0;
+}
+
+.sidenav-item {
+    margin-bottom: 2mm;
+}
+
+.sidenav-link {
+    display: block;
+    padding: 5px 10px;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 2mm;
+}
+    .sidenav-link span{
+        color:#ccc;
+    }
+
+    .sidenav-link.active {
+        border-color: #fff;
+    }
+        
+
+        .sidenav-link:hover {
+            background-color: #505050;
+        }
+
+.container main {
+    padding-bottom: 3px;
+}
+
