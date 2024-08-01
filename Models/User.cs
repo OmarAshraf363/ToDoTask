@@ -15,6 +15,8 @@ namespace ToDoTask.Models
         public string Phone { get; set; } = string.Empty;
         [ValidateNever]
         public List<Task> Tasks { get; set; }
+        [ValidateNever]
+        public List<Comment> Comments { get; set; }
         
     }
 }

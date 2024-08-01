@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Numerics;
 using ToDoTask.Data;
 using ToDoTask.Models;
@@ -20,7 +21,7 @@ namespace ToDoTask.Controllers
                 var user = context.Users.Where(e => e.Phone == phone).FirstOrDefault();
                 if (user != null)
                 {
-                    var userTasks = context.Tasks.Where(e => e.UserId == user.Id).ToList();
+                    var userTasks = context.Tasks.Include(e=>e.Comments).Where(e => e.UserId == user.Id).ToList();
                     ViewBag.UserId = user.Id;
                     return View(userTasks);
                 }
@@ -148,11 +149,11 @@ namespace ToDoTask.Controllers
                     var tasks = context.Tasks.ToList();
                     if (DateTime.Today.AddDays(7) == id)
                     {
-                        tasks = context.Tasks.Where(e => e.Deadline <= id && e.UserId == user.Id).ToList();
+                        tasks = context.Tasks.Include(e=>e.Comments).Where(e => e.Deadline <= id && e.UserId == user.Id).ToList();
                     }
                     else
                     {
-                        tasks = context.Tasks.Where(e => e.Deadline == id && e.UserId == user.Id).ToList();
+                        tasks = context.Tasks.Include(e=>e.Comments).Where(e => e.Deadline == id && e.UserId == user.Id).ToList();
                     }
                     return View("Index", tasks);
                 }

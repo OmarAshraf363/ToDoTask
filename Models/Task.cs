@@ -29,7 +29,9 @@ namespace ToDoTask.Models
         [Required]
         public int UserId {  get; set; }
         [ValidateNever]
-        public User User { get; set; } 
+        public User User { get; set; }
+        [ValidateNever]
+        public List<Comment> Comments { get; set; }
         
 
     }
